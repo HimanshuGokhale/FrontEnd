@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Animated Login Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6f86d6, #48c6ef);
+            background-size: 400% 400%;
+            animation: gradientAnimation 120s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .wave-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(0,0,0,0.05));
+            animation: waveAnimation 60s ease-in-out infinite;
+        }
+
+        @keyframes waveAnimation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+.svg-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    animation: svgRotation 60s linear infinite, svgColorChange 120s linear infinite;
+    opacity: 0.3;
+    transform: scale(0.9); /* Scale down to 90% of the original size */
+    transform-origin: center; /* Ensures scaling from the center */
+}
+
+@keyframes svgRotation {
+    0% { transform: rotate(0deg) scale(0.9); }
+    100% { transform: rotate(360deg) scale(0.9); }
+}
+
+@keyframes svgColorChange {
+    0% { fill: #f0f0f0; }
+    50% { fill: #d0d0d0; }
+    100% { fill: #f0f0f0; }
+}
+
+
+        @keyframes svgColorChange {
+            0% { fill: #f0f0f0; }
+            50% { fill: #d0d0d0; }
+            100% { fill: #f0f0f0; }
+        }
+
+        .login-container {
+            background: #fff;
+            border-radius: 16px; /* Slightly increased border-radius */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* Slightly increased box-shadow */
+            width: 100%;
+            max-width: 320px; /* Slightly increased max-width */
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            padding: 2rem; /* Increased padding */
+            animation: fadeIn 2s ease-out, floatEffect 20s ease-in-out infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatEffect {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        @keyframes typingEffect {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .login-container h1 {
+            font-size: 1.75rem; /* Increased font-size */
+            margin-bottom: 1.25rem; /* Increased margin-bottom */
+            color: #333;
+            position: relative;
+            padding-bottom: 0.75rem; /* Increased padding-bottom */
+            border-bottom: 2px solid #007bff;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: bounceIn 2s ease, typingEffect 3s steps(30, end) forwards;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: translateY(-30px); opacity: 0; }
+            50% { transform: translateY(20px); opacity: 1; }
+            100% { transform: translateY(0); }
+        }
+
+        .input-container {
+    position: relative;
+    margin-bottom: 1.75rem; /* Increased margin-bottom */
+    width: 100%;
+    animation: slideIn 1s ease-out, floatInput 10s ease-in-out infinite;
+}
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatInput {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        .input-container input {
+    width: 82%; /* Make input width 100% */
+    height: 50px; /* Same height as the button */
+    padding: 0 1.25rem; /* Adjusted padding */
+    border: 1px solid #ddd;
+    border-radius: 6px; /* Slightly increased border-radius */
+    font-size: 1.125rem; /* Same font size as the button */
+    background: #f9f9f9;
+    outline: none;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.2);
+}
+
+        .input-container input:hover {
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    transform: scale(1.01);
+}
+        .input-container input:focus {
+    border-color: #007bff;
+    background: #e6f0ff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+}
+
+        .input-container label {
+    position: absolute;
+    top: 50%; /* Adjusted position */
+    left: 1.25rem; /* Adjusted position */
+    font-size: 1rem; /* Same font size as the button */
+    color: #888;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    transform: translateY(-50%);
+}
+
+        .input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label {
+    top: -0.5rem; /* Slightly above the input field */
+    left: 1.25rem;
+    font-size: 0.75rem; /* Same font size as the button */
+    color: #007bff;
+}
+
+        .login-container button {
+            width: 100%;
+            height: 50px; /* Same height as input */
+            padding: 0.875rem; /* Increased padding */
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border: none;
+            border-radius: 6px; /* Slightly increased border-radius */
+            color: #fff;
+            font-size: 1.125rem; /* Increased font-size */
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            transition: background 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+            animation: buttonPulse 4s infinite;
+        }
+
+        @keyframes buttonPulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(0, 123, 255, 0.1); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.1); }
+        }
+
+        .login-container button:hover {
+            background: linear-gradient(135deg, #0056b3, #007bff);
+            transform: scale(1.02) translateY(-2px);
+        }
+
+        .login-container button:active {
+            transform: scale(1) translateY(1px);
+            position: relative;
+        }
+
+        .login-container button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px; /* Slightly increased border-radius */
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: scale(1.05);
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .login-container button:focus:after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .login-container .links {
+            margin-top: 1.5rem; /* Increased margin-top */
+            width: 100%;
+            opacity: 0;
+            animation: linksFadeIn 2s ease-in 1s forwards;
+        }
+
+        @keyframes linksFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+	.login-container .links {
+    		margin-top: 1.5rem; /* Adjust margin as needed */
+    		width: 100%;
+    		display: flex;
+    		justify-content: space-between; /* Space out the links */
+    		opacity: 0;
+    		animation: linksFadeIn 2s ease-in 1s forwards;
+	}
+
+        .login-container .links a {
+    		color: #007bff;
+    		text-decoration: none;
+    		transition: color 0.4s ease, transform 0.4s ease;
+    		display: flex;
+    		align-items: center;
+    		font-size: 0.875rem; /* Adjust font-size as needed */
+		margin: 0 0.5rem; 
+	}
+
+        .login-container .links a:hover {
+    		text-decoration: underline;
+   		color: #0056b3;
+    		transform: scale(1.02);
+	}
+
+        .login-container .links i {
+    		margin-right: 0.5rem;
+	}
+
+
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .input-container i {
+            position: absolute;
+            top: 50%;
+            left: 0.75rem; /* Adjusted position */
+            transform: translateY(-50%);
+            color: #888;
+            transition: color 0.4s ease;
+        }
+
+        .input-container input {
+            padding-left: 2.25rem; /* Adjusted padding */
+        }
+
+        @media (max-width: 480px) {
+            .input-container input {
+                padding-left: 1.75rem; /* Adjusted padding */
+            }
+
+            .login-container {
+                width: 90%; /* Adjusted width */
+                max-width: none; /* Removed max-width */
+            }
+
+            .login-container button {
+                width: 100%;
+            }
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+            display: none;
+        }
+
+        .confetti .confetti-piece {
+    position: absolute;
+    width: 12px; /* Increased size for better visibility */
+    height: 12px; /* Increased size for better visibility */
+    background-color: #ff0; /* Vibrant color */
+    opacity: 1; /* Fully opaque for better visibility */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Shadow for better visibility */
+    animation: confettiFall 1.5s ease-in-out forwards; /* Slower animation for more visible rotation */
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 1;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="wave-background"></div>
+    <div class="svg-background">
+        <svg width="100%" height="100%" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="svg-pattern" patternUnits="userSpaceOnUse" width="20" height="20">
+                    <rect width="20" height="20" fill="#f0f0f0"></rect>
+                    <path d="M0 0 L20 20 M0 20 L20 0" stroke="#ddd" stroke-width="2"></path>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#svg-pattern)"></rect>
+        </svg>
+    </div>
+    <div class="login-container">
+        <h1>Sign In</h1>
+        <div class="input-container">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" placeholder=" " required aria-label="Email Address">
+            <label for="email">Email Address</label>
+        </div>
+        <div class="input-container">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" placeholder=" " required aria-label="Password">
+            <label for="password">Password</label>
+        </div>
+        <button id="login-button">Log In</button>
+        <div class="links">
+            <a href="#"><i class="fas fa-key"></i> Forgot Password?</a>
+            <a href="#"><i class="fas fa-user-plus"></i> Sign Up</a>
+        </div>
+    </div>
+    <div id="particles-js"></div>
+    <div class="confetti" id="confetti"></div>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 4,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 10,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                }
+            },
+            "retina_detect": true
+        });
+
+        document.getElementById('login-button').addEventListener('click', function() {
+            // Show confetti animation on button click
+            const confetti = document.getElementById('confetti');
+            confetti.style.display = 'block';
+
+            // Create confetti pieces
+            for (let i = 0; i < 100; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.className = 'confetti-piece';
+                confettiPiece.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                confettiPiece.style.left = `${Math.random() * 100}vw`;
+                confettiPiece.style.top = `${Math.random() * 100}vh`;
+                confettiPiece.style.animationDuration = `${4 + Math.random()}s`;
+                confetti.appendChild(confettiPiece);
+            }
+
+            // Hide confetti after animation
+            setTimeout(() => {
+                confetti.style.display = 'none';
+                confetti.innerHTML = ''; // Clear confetti pieces
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
